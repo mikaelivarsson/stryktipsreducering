@@ -7,6 +7,7 @@ import itertools
 from tqdm import tqdm
 from operator import eq
 import time
+import os
 
 maxlikaReduceradlista = []
 
@@ -29,6 +30,9 @@ def sparaRader():
             for tecken in rad[0]:
                 f.write(',' + tecken)
             f.write('\n')
+    newSavedText = "Sparade " + os.getcwd() + '/' + filename
+    savedStyle = 'saved'
+    savedText.set_text((savedStyle, newSavedText))
 
 def getData(type="Stryktipset"):
     f = open("config.txt", 'r')
@@ -413,7 +417,8 @@ palette = [
     ('neutral', 'black', 'yellow'),
     ('titlebar', 'black', 'white'),
     ('pbIncomplete', 'black', 'light gray'),
-    ('pbComplete', 'black', 'dark gray')
+    ('pbComplete', 'black', 'dark gray'),
+    ('saved', 'black', 'dark cyan')
 ]
 
 type = "Stryktipset"
@@ -468,6 +473,7 @@ infoText = urwid.Text('')
 grundrad = urwid.Text('')
 antalrader = urwid.Text('')
 reduceraderader = urwid.Text('')
+savedText = urwid.Text(('saved', u''))
 
 setGrundrad()
 oddsFavoriter = urwid.Text('')
@@ -583,7 +589,8 @@ typeFill = urwid.Filler(
             [oddsMinEdit, oddsMaxEdit, minUtdelningEdit, maxLikaEdit, reduceraButton, pb], 24, 3, 1, 'left'
         )),
         urwid.Divider(),
-        reduceraderader
+        reduceraderader,
+        savedText
     ]),
     valign='top', top=0, bottom=1)
 
