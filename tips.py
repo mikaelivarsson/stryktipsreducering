@@ -134,6 +134,7 @@ def appendText(l, s, color='neutral'):
     l.append((color, s))
 
 def setType(typeButtons, state):
+    global type
     if state:
         type = "Stryktipset"
         header.base_widget.set_text("TIPSREDUCERING - " + type)
